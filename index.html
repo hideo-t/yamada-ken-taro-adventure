@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>57歳の冒険: 新しい旅立ち</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #1a1a2e;
+      --text-primary: #e0ddd5;
+      --text-secondary: #8a8a9a;
+      --accent: #4a9eff;
+      --accent-dim: #2a5a9a;
+      --gold: #c4a35a;
+      --chapter-border: #2a2a3e;
+      --serif: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+      --sans: 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.95;
+      min-height: 100vh;
+    }
+
+    /* ─── Header ─── */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 100px 20px 80px;
+      background: linear-gradient(180deg, #1a2a4a 0%, #0f1a2f 100%);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(120,180,255,0.15) 0%, transparent 70%);
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #ffffff;
+      text-shadow: 0 2px 20px rgba(100,160,255,0.3);
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .hero-sub {
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      color: #b0c4de;
+      letter-spacing: 0.15em;
+    }
+    .hero-line {
+      width: 60px; height: 1px;
+      background: var(--gold);
+      margin: 28px auto 0;
+    }
+
+    /* ─── Navigation ─── */
+    .nav-bar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--chapter-border);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      overflow-x: auto;
+      font-family: var(--sans);
+      font-size: 0.8rem;
+    }
+    .nav-bar .nav-title {
+      color: var(--gold);
+      font-weight: 700;
+      white-space: nowrap;
+      margin-right: 8px;
+    }
+    .nav-bar a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      white-space: nowrap;
+      padding: 4px 10px;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .nav-bar a:hover {
+      color: var(--accent);
+      background: rgba(74,158,255,0.1);
+    }
+
+    /* ─── TOC ─── */
+    .toc {
+      max-width: 700px;
+      margin: 60px auto 40px;
+      padding: 0 20px;
+    }
+    .toc h3 {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .toc-item {
+      display: flex; align-items: center; gap: 16px;
+      padding: 14px 18px;
+      color: var(--text-primary);
+      text-decoration: none;
+      border-left: 2px solid var(--chapter-border);
+      transition: all 0.25s;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+    }
+    .toc-item:hover {
+      border-color: var(--accent);
+      background: rgba(74,158,255,0.04);
+      padding-left: 24px;
+    }
+    .toc-num {
+      font-size: 0.75rem;
+      color: var(--accent-dim);
+      font-weight: 700;
+      min-width: 20px;
+    }
+
+    /* ─── Characters ─── */
+    .characters {
+      max-width: 700px;
+      margin: 40px auto 60px;
+      padding: 0 20px;
+    }
+    .characters h3 {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+    .char-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .char-card {
+      background: var(--bg-card);
+      border: 1px solid var(--chapter-border);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .char-name {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .char-meta {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .char-meta span {
+      background: rgba(74,158,255,0.1);
+      padding: 1px 8px;
+      border-radius: 4px;
+    }
+    .char-appearance {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 6px;
+      border-left: 2px solid var(--chapter-border);
+      padding-left: 10px;
+    }
+    .char-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ─── Divider ─── */
+    .section-divider {
+      width: 40px; height: 1px;
+      background: var(--chapter-border);
+      margin: 0 auto;
+    }
+
+    /* ─── Chapter ─── */
+    .chapter {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 80px 20px;
+      border-top: 1px solid var(--chapter-border);
+    }
+    .chapter-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .chapter-number {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      color: var(--accent-dim);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .chapter-title {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .chapter-image {
+      margin: 0 -20px 40px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--chapter-border);
+    }
+    .chapter-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0.92;
+    }
+    .chapter-body p {
+      margin-bottom: 1.2em;
+      text-indent: 1em;
+      text-align: justify;
+    }
+    .chapter-body p:empty {
+      display: none;
+    }
+
+    /* ─── Footer ─── */
+    .footer {
+      text-align: center;
+      padding: 60px 20px;
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--chapter-border);
+    }
+
+    /* ─── Reading mode toggle ─── */
+    .mode-toggle {
+      position: fixed; bottom: 20px; right: 20px; z-index: 200;
+      background: var(--bg-card);
+      border: 1px solid var(--chapter-border);
+      color: var(--text-secondary);
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      padding: 8px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .mode-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+
+    /* --- TTS Read Aloud --- */
+    .tts-fab {
+      position: fixed; bottom: 80px; right: 20px; z-index: 200;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--accent); color: #fff; border: none;
+      font-size: 22px; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      transition: all 0.3s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .tts-fab:hover { transform: scale(1.1); }
+    .tts-fab.speaking { background: #e74c3c; animation: tts-pulse 1.5s infinite; }
+    @keyframes tts-pulse {
+      0%,100% { box-shadow: 0 4px 16px rgba(231,76,60,0.4); }
+      50% { box-shadow: 0 4px 24px rgba(231,76,60,0.7); }
+    }
+    .tts-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(20,20,30,0.95); backdrop-filter: blur(12px);
+      border-top: 1px solid var(--chapter-border);
+      padding: 10px 16px; display: none;
+      align-items: center; gap: 10px;
+      font-family: var(--sans); font-size: 0.85rem;
+    }
+    .tts-bar.active { display: flex; flex-wrap: wrap; }
+    .tts-bar button {
+      background: none; border: 1px solid var(--text-secondary);
+      color: var(--text-primary); border-radius: 6px;
+      padding: 6px 12px; cursor: pointer; font-size: 0.8rem;
+      white-space: nowrap; transition: all 0.2s;
+    }
+    .tts-bar button:hover { border-color: var(--accent); color: var(--accent); }
+    .tts-bar .tts-info {
+      flex: 1; color: var(--text-secondary);
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      min-width: 80px;
+    }
+    .tts-bar .tts-speed {
+      display: flex; align-items: center; gap: 4px;
+      color: var(--text-secondary); font-size: 0.75rem;
+    }
+    .tts-bar .tts-speed input { width: 60px; accent-color: var(--accent); }
+    body.light .tts-bar {
+      background: rgba(245,245,240,0.95); border-top-color: #ddd;
+    }
+    body.light .tts-bar button { border-color: #999; color: #333; }
+    body.light .tts-bar .tts-info { color: #666; }
+
+    /* ─── Light mode ─── */
+    body.light {
+      --bg-primary: #f5f0e8;
+      --bg-secondary: #ebe5d9;
+      --bg-card: #fff;
+      --text-primary: #2a2a2a;
+      --text-secondary: #6a6a6a;
+      --chapter-border: #d5cfc3;
+      --accent: #2563eb;
+      --accent-dim: #6b9eff;
+      --gold: #8a6d2b;
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 600px) {
+      body { font-size: 15px; }
+      .chapter { padding: 50px 16px; }
+    }
+
+    /* ─── Scroll progress ─── */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; z-index: 200;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      width: 0%;
+      transition: width 0.1s;
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress" id="progress"></div>
+
+  <header class="hero">
+    <h1 class="hero-title">57歳の冒険: 新しい旅立ち</h1>
+    <p class="hero-sub">GENERATED WITH LOCAL AI — OLLAMA + STABLE DIFFUSION</p>
+    <div class="hero-line"></div>
+  </header>
+
+  <nav class="nav-bar">
+    <span class="nav-title">目次</span>
+    <a href="#chapter-1">第1章</a><a href="#chapter-2">第2章</a><a href="#chapter-3">第3章</a><a href="#chapter-4">第4章</a><a href="#chapter-5">第5章</a><a href="#chapter-6">第6章</a><a href="#chapter-7">第7章</a><a href="#chapter-8">第8章</a><a href="#chapter-9">第9章</a><a href="#chapter-10">第10章</a>
+  </nav>
+
+  <div class="toc">
+    <h3>— 目次 —</h3>
+        <a href="#chapter-1" class="toc-item"><span class="toc-num">1</span><span class="toc-label">新たな決意</span></a>
+        <a href="#chapter-2" class="toc-item"><span class="toc-num">2</span><span class="toc-label">初めての出会い</span></a>
+        <a href="#chapter-3" class="toc-item"><span class="toc-num">3</span><span class="toc-label">魔法の扉</span></a>
+        <a href="#chapter-4" class="toc-item"><span class="toc-num">4</span><span class="toc-label">未知の旅路</span></a>
+        <a href="#chapter-5" class="toc-item"><span class="toc-num">5</span><span class="toc-label">出会いと別れ</span></a>
+        <a href="#chapter-6" class="toc-item"><span class="toc-num">6</span><span class="toc-label">過酷な試練</span></a>
+        <a href="#chapter-7" class="toc-item"><span class="toc-num">7</span><span class="toc-label">絆の力</span></a>
+        <a href="#chapter-8" class="toc-item"><span class="toc-num">8</span><span class="toc-label">新たな力の源</span></a>
+        <a href="#chapter-9" class="toc-item"><span class="toc-num">9</span><span class="toc-label">故郷への道</span></a>
+        <a href="#chapter-10" class="toc-item"><span class="toc-num">10</span><span class="toc-label">新しい始まり</span></a>
+  </div>
+
+  <div class="characters">
+    <h3>— 登場人物 —</h3>
+    <div class="char-grid">
+      <div class="char-card">
+        <div class="char-name">山田健太郎</div>
+        <div class="char-meta"><span>主人公</span><span>57歳</span></div>
+        <div class="char-appearance">身長180cm、痩せ型の体型。白髪が混じり始めた短髪。
+額と目尻に深い皺。日焼けした肌。穏やかだが芯のある眼差し。
+カーキ色のフィールドジャケットに登山靴。</div>
+        <div class="char-desc">冒険心旺盛で温厚な性格。寡黙だが要所で的確な判断を下す。</div>
+      </div>
+      <div class="char-card">
+        <div class="char-name">マリー</div>
+        <div class="char-meta"><span>ヒロイン</span><span>32歳</span></div>
+        <div class="char-appearance">身長170cm、腰まで届く金色のロングヘア。碧い瞳と整った顔立ち。
+紺色のローブを纏い、革のサッチェルバッグを肩に掛けている。</div>
+        <div class="char-desc">知識豊富で謎めいた女性。柔らかい物腰だが、魔術に関しては厳格。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <main>
+
+    <section class="chapter" id="chapter-1">
+      <div class="chapter-header">
+        <span class="chapter-number">第1章</span>
+        <h2 class="chapter-title">新たな決意</h2>
+      </div>
+      
+      <div class="chapter-body">
+        <p>春の夕暮れが公園に柔らかな光と暖かい風とともに広がる。桜の花びらがあふれるように舞い散り、淡いピンク色の絨毯を作る。その下で人々は立ち話をしたり、歩きながら葉っぱを拾ったりしている。</p>
+
+        <p>遠くから聞こえる子供たちの笑い声と木々に囁かれた風の音が混ざる中、山田健太郎はベンチに座っていた娘・みどりを見つめている。彼女の背後には一本の大桜があり、その枝からはまだ花びらが零れ落ちていた。</p>
+
+        <p>「父さん、これだけ取ってあげたからね」という言葉とともにみどりの手の中には小さな透明な袋がある。「春祭りに持っていくよね？」</p>
+
+        <p>「ありがとう。君も良い大学に行けるといいよ」健太郎は微笑んで言った。その笑顔が少し強引で、心からのものとは思えなかった。</p>
+
+        <p>「行ってらっしゃい」とみどりの声が震える。彼女は父を振り返って涙ながらにそう告げた。「大丈夫だよ」</p>
+
+        <p>二人の手が重なり合う。その間には何年も積み重ねられた絆と、そして今日から始まる別れがあった。</p>
+
+        <p>「父さん」と再び声を上げる娘。彼女は健太郎を見つめ続けている。「新しい旅路、頑張って！」</p>
+
+        <p>日差しが遠くへ消えていく中、公園の喧騒が静かになりつつあった。桜色に染まった風の中で、二人は最後の別れを交わした。</p>
+
+        <p>ベンチから立ち上がった健太郎は娘の方を見ずに歩き出した。「行ってらっしゃい」という言葉だけが振り返ることなく、公園へと吸収されていくように聞こえた。</p>
+      </div>
+    </section>
+    <section class="chapter" id="chapter-2">
+      <div class="chapter-header">
+        <span class="chapter-number">第2章</span>
+        <h2 class="chapter-title">初めての出会い</h2>
+      </div>
+      
+      <div class="chapter-body">
+        <p>霧の森</p>
+
+        <p>朝露が乾かない湿った土壌から立ち上る白い霧。足元には青苔と褐色の落ち葉、その先に広がるのは静かな渓流の音。山田健太郎は懐中電灯を頼りに進み続けた。</p>
+
+        <p>「どこにあるんだよ…」</p>
+
+        <p>囁くような自分の声。木々から漏れる一筋の光線だけが道しるべとなる。冷たい風と湿った空気が皮膚を這い上がり、健太郎は思わず袖で口元を覆う。</p>
+
+        <p>「迷子になったのか？」</p>
+
+        <p>前方に響いたのは驚きよりも静かな声だった。霧の中から現れた女性は金色の髪を束ねた美しい顔立ちをしていて、碧く澄んだ瞳が光を見つめているように映る。</p>
+
+        <p>健太郎は思わず言葉に詰まった。「あなた…誰？」</p>
+
+        <p>「私はマリーと名乗ります。魔法使いの村へ行く途上だったところだよ」彼女は微笑んで鞄から古地図を出した。「君も同じ道を通っているようね。助けることにしようか」</p>
+
+        <p>健太郎は何度も頷くしかなかった。</p>
+
+        <p>不思議な石</p>
+
+        <p>「これが私達が使う魔術の源なんだ」</p>
+
+        <p>マリーは小さな袋を開け、中身を取り出す。それは色とりどりに輝く奇異な石だった——紫色、青緑色、赤みがかっているものなど多様だが、どの一枚でも光を収めているかのように美しく照らし出される。</p>
+
+        <p>「それぞれの力が違うんだよ」</p>
+
+        <p>その言葉と共に彼女は一つの石を取り上げる。紫水晶。静寂と平穏に働きかけるという説明も丁寧である。「君に必要なのはこれが一番だね」</p>
+
+        <p>健太郎は目を細め、自分が手渡されたこの小さな宝石に触れた。</p>
+
+        <p>「ありがとう…」しかし彼女がそれ以上何か言う前に、「その石だけじゃなく、地図の使い方も教えてくれないか？」</p>
+
+        <p>マリーは何度も頷き、古びた地図を開く。道案内の詳細を説明しながら、二人は少しずつ親密さを感じていた。</p>
+
+        <p>準備</p>
+
+        <p>洞窟の中に持ち込んだ火が揺らめいた。その炎は暖かさと同時に微かな煙の香りと共に広がる。健太郎は持参した食料や水をマリーに渡し、彼女自身も荷物からいくつか必要なアイテムを取り出す。</p>
+
+        <p>「私たち、これから長い旅になるんだね」</p>
+
+
+
+        <p>「そうだよ」と彼女の声は柔らかく、「でも心配しないで。この地図と石があれば大丈夫だ」</p>
+
+        <p>二人の視線が交差した瞬間、静寂があり——それは彼らと共に新たな冒険への一歩を踏み出す決意の証だった。</p>
+
+        <p>光</p>
+
+        <p>出口の外では薄明るさが広がっていた。霧は少しだけ溶けており、朝日からの金色の光線が木々の間から差し込んでいた。二人は同時にその景色を見つめた——それは新たな始まりを告げる輝きだった。</p>
+
+        <p>「ここから先も頼むよ」</p>
+
+
+
+        <p>言葉と共に健太郎は手を伸ばした。マリーがそれを握り返すと、彼女は何度もうなずくしかなかった。「もちろん、君の旅に同行するよ」</p>
+
+        <p>そして二人の間には静寂があり——それは新たなる冒険への扉を開いたかのように感じられた。</p>
+      </div>
+    </section>
+    <section class="chapter" id="chapter-3">
+      <div class="chapter-header">
+        <span class="chapter-number">第3章</span>
+        <h2 class="chapter-title">魔法の扉</h2>
+      </div>
+      
+      <div class="chapter-body">
+        <p>霧の薄暗さが少しずつ晴れ渡り、森の中には木々の葉から落ちる露滴と水蒸気の匂いが漂っていた。光はまだ弱かったものの、東の方角に陽射しの一筋が差し込んでいた。耳を澄ませば遠くで鳥のさえずりが聞こえる。</p>
+
+        <p>二人は森の中で朝食を取りながら話した後、マリーは地図を見つめ続けた。「ここから数キロ北へ進むと」と言葉と共に指を動かす。「その古木があるはずです。」</p>
+
+        <p>山田健太郎の顔には疑問が浮かんでいたが、彼女は続けて話した。</p>
+
+        <p>「そこにある扉を開ければ、次の冒険が始まるでしょう」</p>
+        <p>彼女は微笑んだ。</p>
+
+        <p>距離感を保ったまま二人で進み続けた後、前方に突然、巨木が現れた。その幹の周りには苔や草花が生い茂り、根元からは地面すら見えないほど広大な土塊があちこちに張り出しているように見えた。</p>
+
+        <p>山田健太郎は歩みを止めて息を吐いた。「そこか」</p>
+
+        <p>マリーも静まり返って木の前に立ち尽くした。彼女が手元から鍵を取り出すと、それをゆっくりと指先で転がし始めた。冷たくて硬い金属。</p>
+
+        <p>「少し準備が必要かもしれません」</p>
+        <p>そう言って再び地図を確認するマリー。「ここにあるはずです」</p>
+
+        <p>その根元の一つには小さな穴があった。苔や草花に隠れていたため気づきにくかったが、それは細かい鍵と同じ形で、そのサイズ感もほとんど同じだった。</p>
+
+        <p>「鍵ですね」</p>
+        <p>山田健太郎はそう言って静かに頷くと、横目でマリーを見た。「大丈夫ですか？」</p>
+
+        <p>しかし彼女の視線は既にもう一本の木へ向けられていた。そこには何も見えないが、それが開けなければならない扉だと理解する。</p>
+
+        <p>「もちろん」</p>
+        <p>マリーは鍵を差し込み始めた。</p>
+        <p>息が止まった瞬間だった。</p>
+
+        <p>冷気と共に細かい音が広がり始めると同時に、静寂が深まっていく。それから次第に大きな鳴動が始まり、周囲の木々さえも震えるように揺れた。</p>
+
+        <p>扉は開いたのだ。</p>
+
+        <p>最初には僅かな隙間だけだったそれが、徐々に拡大し続け、ついに石畳の一筋一本道が見えた。その向こうでは全く別の光景が広がっていた。</p>
+        <p>青い空と緑豊かで多様な植物たち。それらはまるで夢のように、現実の世界とは別次元のようにも思えるほど異質だった。</p>
+
+        <p>「すごいですね」</p>
+        <p>山田健太郎は静かな感嘆を漏らす。「次の旅が始まりますね」</p>
+
+        <p>マリーは微かに微笑んだ。</p>
+        <p>その表情には新たな決意が浮かんでいた。彼女自身、この扉の向こう側で何を見つけるのか興味津々だった。</p>
+
+        <p>「もちろん」</p>
+        <p>そう答えながらももう一歩前に進むための準備を始める。</p>
+
+        <p>二人は静寂の中立ち尽くしたまま互いに視線を交わし合う。</p>
+        <p>その間から新たな冒険への期待と、少なからぬ不安が伝わってくるようだった。それはまるで彼女たち自身もまだ何があるのか分かっていないように感じられた。</p>
+
+        <p>しかし扉の向こう側へ続く一本道は既にもう待っている。</p>
+        <p>光と影を描く風景、そして未知なるものへの挑戦。</p>
+
+        <p>それがこれから始まろうとしている冒険だった。</p>
+      </div>
+    </section>
+    <section class="chapter" id="chapter-4">
+      <div class="chapter-header">
+        <span class="chapter-number">第4章</span>
+        <h2 class="chapter-title">未知の旅路</h2>
+      </div>
+      
+      <div class="chapter-body">
+        <p>霧が渓谷を包み込む。白い靄に覆われた岩肌の上、赤紫色と鮮やかな緑色の花々が咲き乱れている。水音は遠くから近くへと聞こえてくる。湿った土埃と共に風に乗って来る、新鮮な草木の匂い。</p>
+
+        <p>「山田さん、気をつけてくださいね」</p>
+
+        <p>マリーの声に重なるようにして、岩盤が地面にくっきりとした切り立っている。足元は滑りやすい黒石で覆われている。健太郎は慎重に歩み進める。背後では森の影から光らずんぼな日陰を浴びて佇む、小さな村へと続く道筋。</p>
+
+        <p>「ここには魔術が働いています」</p>
+        <p>マリーはそう言いながら手元で何か呪文を唱えるように指先を動かす。彼女の周囲に軽い光の粒たちが浮遊する。</p>
+        <p>健太郎、あなたもこの地では特別な装備が必要です。</p>
+
+        <p>赤紫色の花々から吹き出る微細な露水。それがマリーの髪や衣服につくほどに接近すると、彼女は不意になにか小さな魔法を唱えたように感じる視覚的な現象を見せる。</p>
+        <p>「大丈夫、山田さん、私たちは一緒だから安心してください」</p>
+
+        <p>その言葉と同時に、ふいにはっきりとした足下が健太郎の前に浮き上がり、マリーと共に岩場へと進む。</p>
+
+        <p>谷底から聞こえる微かな水の音。二人は手を取るようにして小さな異国の村に近づいていく。</p>
+        <p>「ここでは夜も昼も少し特殊な時間帯があります」</p>
+
+        <p>それは赤紫色が混じった月光が夜空全体を覆っているように見えたためだ。</p>
+
+        <p>「青い月明かりの中、人々の踊りを見る機会を得るのは幸運です。」</p>
+        <p>マリーはそう言って先導する。</p>
+        <p>小さな村には暖かい灯りと遠くから聞こえる音楽があった。赤紫色が混じった光の中で踊る人々。彼らの動きはとてもしなやかで流麗だった。</p>
+
+        <p>「山田さん、この景色をどう思います？」</p>
+
+        <p>振り返るとマリーは微笑んでいる。彼女の目元には、小さな涙のような輝きが宿っていた。</p>
+        <p>谷底からの冷たい風と暖かな灯りとの対比。赤紫色の月光に照らされる踊る人々の姿。</p>
+
+        <p>「美しいですね」</p>
+        <p>健太郎もまた同じように笑った。</p>
+
+        <p>突然、岩場を歩いている間でバランスを崩し転びかけたとき、マリーが手を伸ばして支えた。</p>
+        <p>「大丈夫ですか？」</p>
+
+        <p>彼女の言葉に触れるかのように風が吹き抜ける。足元は滑りやすい黒石の上。</p>
+
+        <p>「ありがとう」</p>
+        <p>その瞬間に二人の間で新たな信頼関係ができあがったように感じた。</p>
+        <p>マリーの手から放たれた光粒たち、それが岩盤を照らすかのように微細な灯りとなり健太郎と共に進む足元を見守る。静かな雨音と青紫色に染まった月明かり。</p>
+
+        <p>そして二人は小さな村へと到着した。暖かい灯りが彼らの顔を優しく包み込む。</p>
+        <p>赤紫色の月光の中で踊り続ける人々、その輪の中に混ざることなく、健太郎とマリーは静かに対面する人々を見守るようだった。</p>
+
+        <p>「あなた方は旅人ですか？」</p>
+        <p>一人の老人が声をかけてくる。白髪に染まった頭頂部から目線を通じて二人を見つめる。</p>
+        <p>音楽と共に踊り続ける村人たち、その輪の中では赤紫色と青色の月光が混ざるかのように幻想的な情景が広がっていた。</p>
+
+        <p>「はい」</p>
+        <p>健太郎もまた穏やかな表情で答えた。彼女らを暖かい灯りに包み込むような微笑と共に。</p>
+        <p>マリー、山田さん、あなたたちはこの村の旅人として迎えられているように感じた。</p>
+
+        <p>二人は何度もうなずき合った。</p>
+        <p>そして再び静かに対面する人々を見守るようだった。赤紫色と青色が混ざるように広がる幻想的な情景は遠くへと続く道筋に光を放っていた。</p>
+        <p>「私たちの旅、これからも続いていきますね」</p>
+        <p>健太郎はそう言いながらマリーと共に歩み進む。</p>
+
+        <p>二人の後ろ姿には青紫色の月明かりがさして、小さな異国の村から新たな冒険への旅路が始まるようだった。</p>
+      </div>
+    </section>
+    <section class="chapter" id="chapter-5">
+      <div class="chapter-header">
+        <span class="chapter-number">第5章</span>
+        <h2 class="chapter-title">出会いと別れ</h2>
+      </div>
+      
+      <div class="chapter-body">
+        <p>月光が森の木々の間から微かに差し込み、地面には霜のような白い粒が広がる。静寂の中、遠くで鈴虫の声と葉擦れ音だけが聞こえる。冷たさを感じさせる空気は夜露と共に息を白くする。</p>
+
+        <p>山田健太郎は一本道からそれて小川沿いに歩み始めた。木々の隙間から見える星空には双月が輝き、その光は薄明かりのように静かな風景を優しく包む。彼の足下では水たまりが揺らめいて青白く映る。</p>
+
+        <p>前方で小さな声に驚いた健太郎は振り返った。そこには泥だらけになった母親と子供が立っていた。子供の顔には涙痕があり、しかし見慣れた祖父を彷彿させる年齢ではない表情を見せる男児だった。</p>
+
+        <p>「迷子ですか？」</p>
+        <p>静かに声をかける健太郎へ向かい歩み寄る二人。母親は深く頭を下げた。</p>
+        <p>「どうぞ手助けしていただけますか？」</p>
+
+        <p>彼女から受け取った地図には古城の位置が赤い線で描かれている。</p>
+
+        <p>「ここら辺りを通れば、きっと大丈夫だと思います」</p>
+        <p>マリーも近づき、健太郎と共に二人を見送る。</p>
+        <p>微かな霧が立ちこめ始めると同時に男児は健太郎の手を握った。「ありがとう」</p>
+
+        <p>その瞬間、彼の中で何かが膨れ上がり胸を締めた。亡くなった祖父との思い出が甦り、震える心臓に響く。</p>
+
+        <p>三人共に古城に向かって歩き始めた途端、森からは微かな魔術の音色と光があふれてきた。</p>
+        <p>道は薄暗くなり、足元から突然現れた石畳へ通じる。二人組は遠ざかる彼らを振り返りつつ進む。</p>
+
+        <p>「マリーさん、あの子供が俺に似ていた気がする」</p>
+        <p>歩みながら健太郎の呟きには素直な感覚しかなかった。</p>
+        <p>「そうかもしれませんね」</p>
+
+        <p>古城への道程で彼女の言葉はそのようなものだけだった。しかし静かな風に乗って聞こえてくる鳥たちや木々を通り越す夜露の音が、心地よい微温かさと共に健太郎の中に広がる。</p>
+
+        <p>青白い月光に照らされた古城壁際から三人組を見送ると、マリーは「お手伝い出来て嬉しい」と静かな微笑みを見せた。その表情には言葉では表せない深い思いがあった。</p>
+
+        <p>遠ざかる歩みを眺めつつも彼女は黙って立つ。</p>
+        <p>風が巻き起こり始めた古城の入り口へ向かう二人を見送る。</p>
+
+        <p>「またね」</p>
+        <p>最後に僅かな明かりと共に告げ、その後には薄暗さと静寂しか残らない。</p>
+      </div>
+    </section>
+    <section class="chapter" id="chapter-6">
+      <div class="chapter-header">
+        <span class="chapter-number">第6章</span>
+        <h2 class="chapter-title">過酷な試練</h2>
+      </div>
+      
+      <div class="chapter-body">
+        <p>嵐の夜、古城</p>
+
+        <p>雨粒が打ち鳴らす音が森全体に響き渡る。風が強いので湿った空気が肌を刺す。青白い月明かりは雲間に消え隠れしながらも、古びた石壁と荒廃した城郭の輪郭を浮かび上がらせていた。</p>
+
+        <p>「ここだね」とマリーは静かな声で言った。「試練の鍵」。</p>
+        <p>健太郎が振り返ると、彼女は雨粒に濡れた紫紺色のローブを纏い、薄く微笑んでいた。その表情には優しさと厳格さが同居していた。</p>
+
+        <p>「進むべき道を見つけ出す」とマリー。「答えを探し出せば扉があなたを迎え入れる」。</p>
+        <p>彼女は黒革のサッチェルバッグから小さな魔法灯を出して、それを壁面に向けて点け始めた。光の中で浮かび上がった文字群。湿気でくすんだ古代の言葉。</p>
+
+        <p>「解読できる？」とマリーが問う。「答えを見つけるのはあなた」。</p>
+        <p>健太郎は頷き返し、「知恵ではなく直感を信じろ」とだけ答えた。彼は雨に濡れた壁面へと近づいていった。文字は光で浮かび上がる一方、すぐに闇に戻る。</p>
+
+        <p>「ここだよ」</p>
+
+        <p>その声と共にマリーが魔法灯の位置を変えた。</p>
+        <p>新たな角度から照らし出された文様。「試練」と刻まれた扉への鍵となる謎を解くためのヒント。雨粒に揺れて読むのが難しかった古い文字列。</p>
+
+        <p>「これだ」</p>
+
+        <p>再びマリーが言った瞬間、健太郎は壁面から浮かんだ古めいた経路図を見つけ出していた。「ここじゃなきゃ」と彼女が確認し、「扉の中央部に鍵穴がある」。その声を聞き、健太郎は灯りを見つけるために雨の中で身体を動かした。</p>
+
+        <p>「触れる」</p>
+
+        <p>マリーが言った時も言葉だけではなく、魔法燈の光と彼女の手の動きでそれが伝わってきた。「ここだ」と彼女が指し示す場所。鍵穴を見つけた健太郎は、その黒い口の中に細長い金属の棒を押し込んだ。</p>
+
+        <p>「開け」</p>
+
+        <p>マリーの言葉と共に扉から微かな音が聞こえた。</p>
+        <p>雨粒に打たれて揺れる光の中で、ゆっくりと開かれていく大扉。その向こう側には深い闇が広がっていた。「進むよ」と健太郎が告げると、「私が後をつけます」。マリーの声は静かながら決意があった。</p>
+
+        <p>「行くぞ」</p>
+
+        <p>黒々とした奥へ踏み出す足音。</p>
+        <p>湿った空気と冷たさを帯びた風と共に、彼らは闇に向かって歩き始めた。古城の中には古めいた文字が刻まれていた。「試練」の始まりだった。</p>
+      </div>
+    </section>
+    <section class="chapter" id="chapter-7">
+      <div class="chapter-header">
+        <span class="chapter-number">第7章</span>
+        <h2 class="chapter-title">絆の力</h2>
+      </div>
+      
+      <div class="chapter-body">
+        <p>闇色の薄い煙が迷宮に流れ込んでいる。松明の炎が揺れ、その火光で壁の石造りの陰影が踊る。湿った風が通じぬ道を通って通り抜ける音。遠くから水滴を打つような雨粒の軌跡が見えた。</p>
+
+        <p>「ここは古い王家の迷宮ですね」マリーが囁き、背後に広がる壁面を見やる。「長い時間を経て忘れ去られた痕跡です」</p>
+
+        <p>健太郎は首肯し、前進する足を止めることなく言った。「君も試練を受けるって言ってたよね。俺のことを信頼してるのか？」</p>
+
+        <p>「それは疑問に思う必要はありません」マリーが答えた。「あなたと進めば、正解を見つけることは間違いありませんから」</p>
+
+        <p>二人は静かに歩み続け、迷宮の中を進んでいく。雨粒が地面に落ちる音が遠く聞こえる。</p>
+
+        <p>「君の家族について教えてくれないかな」と健太郎が言った。「俺たちのような冒険にはあまり関係がないかもしれないけど」  </p>
+
+        <p>マリーはしばし黙り込んだ後、視線を天井へ向けた。「父と母とはそう仲良くなかったですね。でも私は両親の子供だったから、その間で揺れていました」</p>
+
+        <p>「君が苦労したんだな」と健太郎。</p>
+
+        <p>「あなたも家族に悩みを持っていたんですね」マリーは視線を向け、「何があったのか話してみてくださいませんか？」</p>
+
+        <p>二人は互いの過去を語り合いながら進む。その間、松明の炎が揺れ続けていた。闇色の煙と光との間に映し出される迷宮の石壁。</p>
+
+        <p>「妹のことね」と健太郎。「彼女とは今も話さないでいるんだよ」</p>
+
+        <p>マリーは息を呑み、「それは辛い経験だったんですね」  </p>
+
+        <p>「そうだな。でも、君がいると少し楽になる気がするんだよ」</p>
+
+        <p>薄暗闇の中で松明の炎に照らされた二人。「ここからは迷宮も深まるし、試練も厳しいかもしれない」とマリーは言った。</p>
+
+        <p>健太郎は頷いた。「大丈夫だろ」  </p>
+
+        <p>「一緒に進もう。絆があれば何でも乗り越えられるはずです」</p>
+
+        <p>遠くで何かが鳴る音。松明の炎に照らされた二人の影は長い物になっていた。</p>
+        <p>迷宮の壁面には、石造りの陰と光の踊るパターンが刻まれている。</p>
+
+        <p>「ここだ」マリーが前方を指差した。「このドアを開ければ先へ進めます」</p>
+
+        <p>健太郎は松明を持って近づく。微かな音と共に古びた鍵穴の中から何かが出始める。</p>
+
+        <p>「君に任せるよ」と彼は言った、「開けるのはあなただ」</p>
+
+        <p>マリーの瞳が光を湛え、静かに頷いた。「絆があれば何でもできますね」  </p>
+
+        <p>松明の炎が揺れる中で二人は何も言わずに顔を見合わせる。迷宮の中で微かな雨粒が落ちてきている。</p>
+
+        <p>その瞬間、マリーは初めて目元を濡らした。</p>
+        <p>健太郎は黙って彼女の肩に手をおいた。「一緒に」とだけ言った。</p>
+      </div>
+    </section>
+    <section class="chapter" id="chapter-8">
+      <div class="chapter-header">
+        <span class="chapter-number">第8章</span>
+        <h2 class="chapter-title">新たな力の源</h2>
+      </div>
+      
+      <div class="chapter-body">
+        <p>風雨の夜、古い王家の迷宮に冷たく湿った空気が流れ込んでくる。石の壁から水滴がこぼれ落ちる音と遠くで鳴き響く雷の声が重なり合っている。青銅製の燭台から漏れる揺らめく炎が、薄暗い通路を僅かな光に満たす。</p>
+
+        <p>鏡はそのわずかな光を受け止めて微かに艶やかさを放っていた。「ここまでは誰も来なかったはずだ」と健太郎は呟きながら歩み寄り、頬のラインで表面を軽く撫でる。手のひらが冷たかった。</p>
+
+        <p>「あなたたちには道がある」</p>
+        <p>その言葉と共に迷宮に設けられた次なる試練の扉が開いた。彼女と二人だけの空間の中で、静寂は重くなり、音が心地よい響きを放ち始める。</p>
+
+        <p>古鏡の中に映し出された自分自身とは違う二つの姿があった。左手には燃えるような若かりしころの影——もう一方の手には今ここに立ち尽くす年齢と経験という武器を持つ健太郎が重なり合っていた。</p>
+
+        <p>「あなたは変わった」</p>
+
+        <p>静寂を破るその声も、風雨とともに遠ざかる雷鳴のように深淵からの問いであった。鏡面を伝う水滴の音に耳を傾けつつ、彼は青銅燭台に向かい光を受け止めるようにゆっくりと顔を向ける。</p>
+
+        <p>「年齢は足枷ではなく経験という武器だ」</p>
+        <p>その言葉が風に乗って迷宮へと流れていく。鏡面では若かりしその姿と、ここにいる57歳の自分が重なり合い、静かに溶け合っていくようだった。</p>
+
+        <p>青銅燭台からの光は揺らめきながらも健太郎を包み込むように燃え上がっていたが、その炎を見つめる彼の目からは熱いものがこぼれ落ちた。手で涙をぬぐう動作もまた静かに繰り返されるだけ。</p>
+
+        <p>「大丈夫です」</p>
+        <p>傍らに立つマリーは健太郎の背中を優しく押し添えて、共にある道へと歩み始めた。</p>
+        <p>その足音が遠くまで響き渡る。</p>
+      </div>
+    </section>
+    <section class="chapter" id="chapter-9">
+      <div class="chapter-header">
+        <span class="chapter-number">第9章</span>
+        <h2 class="chapter-title">故郷への道</h2>
+      </div>
+      
+      <div class="chapter-body">
+        <p>日差しが薄暗い曇り空、車窓からは遠近の風景が一瞬で目まぐるしく入れ替わる。古鏡の霧が晴れた後も、健太郎は少し浮遊感を感じていた。それでもマリーと二人きりの空間の中で、静けさを保ちつつ道は進み続けた。</p>
+
+        <p>車窓越しに広がるのは麦畑だ。緑色の波間でわずかに揺れる穂先。その風景は健太郎の心臓を軽く撫でるようだった。「ただいま」と、口の中で呟いた。しかし声には出さなかった。</p>
+
+        <p>車から降りたとき、足下にあるのは故郷の土だった。柔らかかったが少しだけ堅い感触があった。靴底を通じて伝わってくる温もりに、思わず息を止めるほどの感覚があった。「ここは変わらない」と彼女の声だけがあたりを包んだ。</p>
+
+        <p>麦畑からは青臭さと新鮮な香りが漂う。風に乗って穂の揺れる音まで聞こえるようだ。赤瓦のかたち良い屋根の集落は遠くに小さくなっていく。この景色を見れば、どこへいっても変わらない故郷への帰還を感じた。</p>
+
+        <p>「マリーさん」</p>
+        <p>彼女が振り返る。</p>
+        <p>「ここに戻ってくると、時間が止まっているように感じるよ」</p>
+
+        <p>「それはあなたの心がそこで停止しているからでしょう」とマリーは静かに言った。風に乗せられて麦畑の穂が揺れる音を聞きながら。</p>
+
+        <p>健太郎は視線を遠くへ向けた。「あそこに住んでいた子供たちも、もう大人になっているだろう」その言葉と共に再び曖昧な感覚が心地よく広がる。しかし、同時にそれは過去との距離を感じさせるものでもあった。</p>
+        <p>「変わったこともたくさんあるよ」</p>
+
+        <p>「変われども、その風景は同じだ」とマリー。</p>
+
+        <p>二人の影だけが夕暮れに伸びている。「遠くから見れば、この集落の光景は何年経っても似てないか」</p>
+        <p>彼女は静かに微笑んだ。</p>
+        <p>「しかし何か変わったものがあると気づいたとき、その感覚こそが成長を表していると思います」</p>
+
+        <p>麦畑からの風が、彼ら二人に向かって吹き抜けていく。遠くで鳴る鳥の声も耳に届く。「ここには必ず戻ってくるべき場所がある」マリーはそう言った。</p>
+
+        <p>「そしてまた旅に出ることになるだろう」と彼女の予想通り。</p>
+        <p>その言葉を聞いて健太郎が頷いたとき、二人は何度目かの沈黙の中に落ちた。風と麦畑の穂に揺れる音が空気中に広がっていた。</p>
+
+        <p>故郷の土はまだ温かいままだった。「ただいま」と彼女は言った。</p>
+        <p>遠くで夕暮れ時の人々が、田んぼを通り過ぎる足音が聞こえる。それと共に何処かに飛ぶ鳥たちの羽音も混ざり合っていた。</p>
+
+        <p>麦畑と赤瓦集落の間には二人だけだったが、「ここに戻ってきた」という言葉は不必要だった。</p>
+        <p>風、匂い、光、すべてがそれを物語っているように感じた。</p>
+      </div>
+    </section>
+    <section class="chapter" id="chapter-10">
+      <div class="chapter-header">
+        <span class="chapter-number">第10章</span>
+        <h2 class="chapter-title">新しい始まり</h2>
+      </div>
+      
+      <div class="chapter-body">
+        <p>初夏の朝、露が乾き始める麦畑に淡い光が降り注ぐ。空気には土と青草の匂いと共に、薄雲が微風に乗って遠くへ運ばれていく音が聞こえた。山田健太郎はその背後を振り返らずに歩み始め、マリーもまた隣で微笑んで並ぶ。</p>
+
+        <p>「もう帰るときだね」</p>
+        <p>彼女の言葉と共に彼らの足元には小さな影が蠢き始める。麦穂一つ一つにも息があり、それが生命を感じさせるように揺れている。風は柔らかく、朝露を吸収しながら微かな匂いを運んでくる。</p>
+
+        <p>村はずれの道路へ出ると、車道脇に並ぶ桜がそよぎ始め、淡いピンク色の花びらを舞わせる。その向こうには山々があり、太陽の光はまだ薄くだが確実に彼らを照らす準備をしている。</p>
+
+        <p>「おじさんたちは元気そうだね」</p>
+        <p>マリーの声が静かな朝に響き、健太郎は何も言葉にして返さなかった。ただ微笑みながら頷いただけだ。</p>
+        <p>彼等は再び車道へと向かい、麦畑から山への入り口となる小径を進む。</p>
+
+        <p>「あそこを通るとまた違う景色が見れるよ」</p>
+        <p>マリーの指差す先には広大な麦畑が連なり、その奥に見え隠れする小さな森があった。昨日までとは全く異なる風景で、それは彼らの旅路が始まる象徴でもあった。</p>
+
+        <p>「分かってるさ、新しい冒険なんだよ」</p>
+        <p>健太郎はそう答えると、もう一度後ろを振り返ったが、見慣れた景色も遠ざかり始めている。その視界には次々に新たな風景が広がり始める。</p>
+        <p>麦畑の向こう側から見える山道へ入ると、彼らを取り囲む空気はさらに清冽で、肌寒いくらいだ。</p>
+
+        <p>「もう一回だけ振り返る？」</p>
+        <p>マリーの問いかけに健太郎は何も言わずに首を横に振った。</p>
+        <p>彼等が進んでいた小径では既になにも残っていなかった。その道端から見える麦畑と山々は、ただ新しい旅路への扉として今、静かに開かれているだけだ。</p>
+
+        <p>二人の足音と共に小さな岩や草花が軋む音が聞こえ、それが彼等の進みを告げる。「またいつでも帰れるよ」という言葉も風に乗って麦畑から届く。しかし、健太郎はそれを無視し続けて前だけを見つめた。</p>
+        <p>「旅路が始まった」</p>
+        <p>マリーがそう言った刹那、その声は突然遠ざかる音と共に溶けていった。</p>
+
+        <p>山道の入り口では新たな光景と出会うため、彼らは何も言わずに歩みを進める。それは彼等にとって新しい始まりであり終わりでもあった。</p>
+        <p>それら全てを背負って二人は再び旅路へ出発する。その先にはまだ誰にも見ていない景色が待っていることだろう。</p>
+
+        <p>麦畑の向こうに続く山道、彼らが踏み出した一歩と微笑むマリー——それが新たな始まりを告げる、静寂な瞬間だった。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>57歳の冒険: 新しい旅立ち</p>
+    <p>Generated locally with Ollama + Stable Diffusion</p>
+  </footer>
+
+
+  <button class="tts-fab" id="ttsFab" onclick="ttsToggle()" title="Read aloud">
+    <span id="ttsFabIcon">&#x1f50a;</span>
+  </button>
+  <div class="tts-bar" id="ttsBar">
+    <button onclick="ttsPause()" id="ttsPauseBtn">&#x23f8;</button>
+    <button onclick="ttsStop()">&#x23f9;</button>
+    <button onclick="ttsPrev()">&#x23ee;</button>
+    <button onclick="ttsNext()">&#x23ed;</button>
+    <span class="tts-info" id="ttsInfo">Ready</span>
+    <span class="tts-speed">
+      <input type="range" id="ttsSpeed" min="0.5" max="2.0" step="0.1"
+             value="1.0" onchange="ttsSetSpeed(this.value)" />
+      <span id="ttsSpeedVal">1.0x</span>
+    </span>
+  </div>
+
+  <button class="mode-toggle" onclick="toggleMode()">🌗 表示切替</button>
+
+  <script>
+    // Reading mode
+    function toggleMode() {
+      document.body.classList.toggle('light');
+      localStorage.setItem('mode', document.body.classList.contains('light') ? 'light' : 'dark');
+    }
+    if (localStorage.getItem('mode') === 'light') document.body.classList.add('light');
+
+    // Scroll progress
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      document.getElementById('progress').style.width = pct + '%';
+    });
+
+    // === TTS (Web Speech API) ===
+    const synth = window.speechSynthesis;
+    let ttsChs = [], ttsI = 0, ttsRate = 1.0, ttsOn = false, ttsPd = false;
+
+    document.querySelectorAll('.chapter').forEach((sec, i) => {
+      const b = sec.querySelector('.chapter-body');
+      const t = sec.querySelector('.chapter-title');
+      if (b) ttsChs.push({
+        title: t ? t.textContent : ('Ch.' + (i+1)),
+        text: b.textContent.trim(), el: sec
+      });
+    });
+
+    function ttsToggle() {
+      if (!synth) { alert('Speech not supported'); return; }
+      if (ttsOn) { ttsStop(); return; }
+      const sy = window.scrollY + window.innerHeight / 3;
+      let cl = 0;
+      ttsChs.forEach((c, i) => { if (c.el.offsetTop <= sy) cl = i; });
+      ttsI = cl; ttsOn = true; ttsPd = false;
+      document.getElementById('ttsFab').classList.add('speaking');
+      document.getElementById('ttsFabIcon').innerHTML = '&#x23f9;';
+      document.getElementById('ttsBar').classList.add('active');
+      _ttsRead();
+    }
+
+    function _ttsRead() {
+      if (ttsI >= ttsChs.length) { ttsStop(); return; }
+      synth.cancel();
+      const ch = ttsChs[ttsI];
+      document.getElementById('ttsInfo').textContent = ch.title;
+      ch.el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Split by Japanese sentence endings for reliable playback
+      const sents = ch.text.match(/[^。！？
+]+[。！？]?/g) || [ch.text];
+      let si = 0;
+
+      function next() {
+        if (!ttsOn) return;
+        if (si >= sents.length) {
+          ttsI++;
+          if (ttsI < ttsChs.length) setTimeout(_ttsRead, 800);
+          else ttsStop();
+          return;
+        }
+        const u = new SpeechSynthesisUtterance(sents[si].trim());
+        u.lang = 'ja-JP'; u.rate = ttsRate;
+        const vs = synth.getVoices();
+        const jv = vs.find(v => v.lang && v.lang.startsWith('ja'));
+        if (jv) u.voice = jv;
+        u.onend = () => { si++; next(); };
+        u.onerror = () => { si++; next(); };
+        synth.speak(u);
+      }
+      next();
+    }
+
+    function ttsPause() {
+      if (!ttsOn) return;
+      if (ttsPd) {
+        synth.resume(); ttsPd = false;
+        document.getElementById('ttsPauseBtn').innerHTML = '&#x23f8;';
+      } else {
+        synth.pause(); ttsPd = true;
+        document.getElementById('ttsPauseBtn').innerHTML = '&#x25b6;';
+      }
+    }
+
+    function ttsStop() {
+      synth.cancel(); ttsOn = false; ttsPd = false;
+      document.getElementById('ttsFab').classList.remove('speaking');
+      document.getElementById('ttsFabIcon').innerHTML = '&#x1f50a;';
+      document.getElementById('ttsBar').classList.remove('active');
+      document.getElementById('ttsInfo').textContent = 'Ready';
+      document.getElementById('ttsPauseBtn').innerHTML = '&#x23f8;';
+    }
+
+    function ttsNext() { if (ttsOn && ttsI < ttsChs.length - 1) { ttsI++; _ttsRead(); } }
+    function ttsPrev() { if (ttsOn && ttsI > 0) { ttsI--; _ttsRead(); } }
+    function ttsSetSpeed(v) {
+      ttsRate = parseFloat(v);
+      document.getElementById('ttsSpeedVal').textContent = v + 'x';
+    }
+    if (synth) synth.onvoiceschanged = () => synth.getVoices();
+
+  </script>
+</body>
+</html>
